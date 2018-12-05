@@ -8,3 +8,6 @@ homeassistant:
   url: 'http://localhost'
   port: '8123'
   password: '123789'
+
+tuling:
+  key: 'tuling api key'

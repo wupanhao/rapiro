@@ -32,12 +32,13 @@ def handle(text,config):
     p = json.dumps({"text": text})
     r = requests.post(url + ":" + port + "/api/services/conversation/process", headers=headers,data=p)
     print(r.json())
+    return text
 def isValid(text):
     return any(word in text for word in [u"开启",u"把",u"关闭",
                                          u"打开", u"帮我"])
 
 if __name__ == '__main__':
-	text = u"帮我关闭卧室的灯"
+	text = u"帮我打开卧室的灯"
 	# print(u"帮我" in text)
 	config = {"homeassistant":{"url":"http://localhost","port":"8123","password":"123789"}}
 	handle(text,config)
