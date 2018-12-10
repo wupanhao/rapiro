@@ -9,10 +9,12 @@ from record import Mic
 from baidu_api import Baidu
 import Hass
 from Tuling import Tuling
+from opiro import rapiro
 
 interrupted = False
 stt = None
 tuling = None
+rap = None
 mic = Mic()
 mic.fetchThreshold()
 detector = None
@@ -24,6 +26,7 @@ def detected_callback():
     global config
     global stt
     global tuling
+    global rap
     detector.terminate()
     print "hotword detected"
     os.system("aplay resources/ding.wav")
@@ -35,7 +38,11 @@ def detected_callback():
     else:
       text = res['result'][0]
       print(text)
-      if(Hass.isValid(text)):
+      action = rap.isValid(text)
+      if(action):
+          print('handled by rapiro')
+          rap.do(action)
+      elif(Hass.isValid(text)):
         print('handled by hass')
         res = Hass.handle(text,config)
         stt.synthesis('已执行'+res)
@@ -63,6 +70,7 @@ def main():
   global stt
   global config
   global tuling
+  global rap
   if len(sys.argv) == 1:
       print("Error: need to specify model name")
       print("Usage: python demo.py your.model")
@@ -73,6 +81,7 @@ def main():
   
   stt = Baidu(config)
   tuling = Tuling(config)
+  rap = rapiro('http://192.168.123.87')
   print(len(sys.argv))
   model = sys.argv[1]
 

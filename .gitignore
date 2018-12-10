@@ -2,3 +2,4 @@ config.yaml
 *.pyc
 log.txt
 auido.mp3
+record.wav
