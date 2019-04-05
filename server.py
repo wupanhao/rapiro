@@ -28,7 +28,7 @@ def detected_callback():
     global tuling
     global rap
     detector.terminate()
-    print "hotword detected"
+    print("hotword detected")
     os.system("aplay resources/ding.wav")
     # os.system("arecord -d 4 -r 16000 -c 1 -t wav -f S16_LE record.wav")
     mic.activeListenToAllOptions()

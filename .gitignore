@@ -2,4 +2,6 @@ config.yaml
 *.pyc
 log.txt
 auido.mp3
-record.wav
+*.wav
+_snowboydetect.so
+__pycache__

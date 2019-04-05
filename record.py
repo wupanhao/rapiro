@@ -63,7 +63,7 @@ class Mic:
         lastN = [i for i in range(20)]
 
         # calculate the long run average, and thereby the proper threshold
-        for i in range(0, RATE / CHUNK * THRESHOLD_TIME):
+        for i in range(0, int(RATE / CHUNK * THRESHOLD_TIME)):
             try:
                 data = stream.read(CHUNK)
                 frames.append(data)
@@ -153,7 +153,8 @@ class Mic:
             wav_fp.setnchannels(1)
             wav_fp.setsampwidth(pyaudio.get_sample_size(pyaudio.paInt16))
             wav_fp.setframerate(RATE)
-            wav_fp.writeframes(''.join(frames))
+            #print(type(frames)) # list in Python3 , need bytes
+            wav_fp.writeframes(b''.join(frames))
             wav_fp.close()
             f.seek(0)
             # return self.active_stt_engine.transcribe(f)

@@ -50,9 +50,9 @@ if __name__ == '__main__':
         stt = Baidu(config)
         res = stt.recognize()
         if(res['err_no']):
-        	print(res)
+            print(res)
         else:
-   			print(res['result'][0])
+            print(res['result'][0])
         stt.synthesis('hello world')
         stt.say()
 

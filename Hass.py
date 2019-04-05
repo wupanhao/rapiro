@@ -6,12 +6,12 @@ import logging
 
 try:
     reload         # Python 2
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 except NameError:  # Python 3
     from importlib import reload
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 SLUG = "homeassistant"
 
