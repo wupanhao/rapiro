@@ -3,5 +3,9 @@ config.yaml
 log.txt
 auido.mp3
 *.wav
+*.h5
 _snowboydetect.so
 __pycache__
+label_names
+labels
+features
