@@ -11,8 +11,6 @@ import Hass
 from Tuling import Tuling
 from opiro import rapiro
 
-from audio import play
-
 interrupted = False
 stt = None
 tuling = None
@@ -31,8 +29,7 @@ def detected_callback():
     global rap
     detector.terminate()
     print("hotword detected")
-    play('./resources/ding.wav')
-    # os.system("aplay resources/ding.wav")
+    os.system("aplay resources/ding.wav")
     # os.system("arecord -d 4 -r 16000 -c 1 -t wav -f S16_LE record.wav")
     mic.activeListenToAllOptions()
     res = stt.recognize()
@@ -49,14 +46,13 @@ def detected_callback():
         print('handled by hass')
         res = Hass.handle(text,config)
         stt.synthesis('已执行'+res)
-        #stt.say()
-        play('./speak.mp3')
+        stt.say()
       else:
         print('no handler matched , use default tuling')
         res = tuling.answer(text)
         stt.synthesis(res)
-        #stt.say()
-        play('./speak.mp3')
+        stt.say()
+
     detector.start(detected_callback=detected_callback,
            interrupt_check=interrupt_callback,
            sleep_time=0.03)

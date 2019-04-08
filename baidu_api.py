@@ -34,7 +34,7 @@ class Baidu:
 	})
 		# 识别正确返回语音二进制 错误则返回dict 参照下面错误码
 		if not isinstance(result, dict):
-		    with open('auido.mp3', 'wb') as f:
+		    with open('speak.mp3', 'wb') as f:
 		        f.write(result)
 		        return 1
 		else:
