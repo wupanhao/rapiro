@@ -90,7 +90,7 @@ class Mic:
         self._threshold = THRESHOLD
         return THRESHOLD
 
-    def activeListenToAllOptions(self, THRESHOLD=None, LISTEN=True,
+    def activeListenToAllOptions(self,LISTEN_TIME=12, THRESHOLD=None, LISTEN=True,
                                  MUSIC=False):
         """
             Records until a second of silence or times out after 12 seconds
@@ -101,7 +101,6 @@ class Mic:
 
         RATE = 16000
         CHUNK = 1024
-        LISTEN_TIME = 12
 
         # check if no threshold provided
         if self._threshold:
@@ -156,7 +155,7 @@ class Mic:
             #print(type(frames)) # list in Python3 , need bytes
             wav_fp.writeframes(b''.join(frames))
             wav_fp.close()
-            f.seek(0)
+            # f.seek(0)
             # return self.active_stt_engine.transcribe(f)
             return
 
@@ -166,5 +165,6 @@ if __name__ == '__main__':
     while True:
         print('start listening')
         mic.activeListenToAllOptions(threshold)
+        break
         print('listen over')
         os.system('aplay record.wav')
