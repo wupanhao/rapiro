@@ -4,6 +4,7 @@ log.txt
 *.mp3
 *.wav
 *.h5
+!resource/*
 .ipynb_checkpoints
 _snowboydetect.so
 __pycache__
